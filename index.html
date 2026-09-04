@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pranav Kiron — Process Control Engineering Portfolio</title>
+<meta name="description" content="Chemical Engineering (Computer Process Control) at the University of Alberta. Projects in process simulation, embedded controls, and applied software. Open to internship and full-time roles.">
+<meta property="og:title" content="Pranav Kiron — Process Control Engineering Portfolio">
+<meta property="og:description" content="Projects in process simulation, embedded controls, and applied software.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%231B222B'/><text y='68' x='50' text-anchor='middle' font-size='52' font-family='monospace' fill='%23F5F6F1'>PK</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FAFAF8;
+    --paper-2:#F0F1EC;
+    --ink:#16191D;
+    --ink-soft:#636B66;
+    --line:#DFE2D9;
+    --line-strong:#C2C8BB;
+    --blue:#2E5C86;
+    --amber:#B8681C;
+    --max:920px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:'IBM Plex Sans',system-ui,sans-serif;
+    font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;
+  }
+  body.modal-open{overflow:hidden;}
+  a{color:var(--blue);}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 26px;}
+  .mono{font-family:'IBM Plex Mono',monospace;}
+
+  /* ---------- Floating nav ---------- */
+  .floating-nav{position:sticky;top:16px;z-index:30;display:flex;justify-content:center;}
+  .pillbar{
+    display:flex;align-items:center;gap:18px;
+    background:rgba(250,250,248,0.92);backdrop-filter:blur(8px);
+    border:1px solid var(--line-strong);border-radius:999px;
+    padding:7px 8px 7px 20px;box-shadow:0 2px 14px rgba(22,25,29,0.07);
+    font-size:0.86rem;
+  }
+  .pillbar a{color:var(--ink);text-decoration:none;}
+  .pillbar a:hover{color:var(--blue);}
+  .pillbar a.pill-dark{background:var(--ink);color:var(--paper);border-radius:999px;padding:8px 17px;font-weight:600;}
+  .pillbar a.pill-dark:hover{background:var(--blue);color:var(--paper);}
+
+  /* ---------- Hero ---------- */
+  .hero{padding:54px 0 26px 0;text-align:center;}
+  .avatar{
+    width:112px;height:112px;border-radius:50%;overflow:hidden;
+    border:1px solid var(--line-strong);background:var(--paper-2);
+    margin:0 auto 26px auto;position:relative;
+  }
+  .avatar img{width:100%;height:100%;object-fit:cover;display:block;}
+  h1.headline{
+    font-size:clamp(1.75rem,4.6vw,2.55rem);font-weight:700;line-height:1.24;
+    max-width:20ch;margin:0 auto 22px auto;letter-spacing:-0.015em;
+  }
+  .bio{color:var(--ink-soft);font-size:0.95rem;max-width:54ch;margin:0 auto 13px auto;}
+  .cta-row{display:flex;justify-content:center;gap:11px;margin:26px 0 0 0;flex-wrap:wrap;}
+  .cta-row a{
+    background:var(--ink);color:var(--paper);text-decoration:none;font-weight:600;
+    padding:10px 22px;border-radius:999px;font-size:0.88rem;
+  }
+  .cta-row a.ghost{background:none;color:var(--ink);border:1px solid var(--line-strong);}
+  .cta-row a:hover{background:var(--blue);color:var(--paper);}
+  .cta-row a.ghost:hover{border-color:var(--blue);color:var(--blue);background:none;}
+
+  /* Technical accent: status strip */
+  .status-strip{
+    display:flex;justify-content:center;flex-wrap:wrap;gap:0;
+    margin:34px 0 0 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    font-family:'IBM Plex Mono',monospace;font-size:0.7rem;color:var(--ink-soft);
+  }
+  .status-strip div{padding:10px 22px;border-right:1px solid var(--line);}
+  .status-strip div:last-child{border-right:none;}
+  .status-strip b{display:block;color:var(--ink);font-weight:500;font-size:0.76rem;margin-top:2px;}
+
+  /* ---------- Section headers ---------- */
+  section{padding:52px 0;scroll-margin-top:92px;}
+  .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:8px;}
+  .sec-head h2{font-size:1.35rem;margin:0;font-weight:600;letter-spacing:-0.01em;}
+  .sec-head .idx{font-family:'IBM Plex Mono',monospace;font-size:0.72rem;color:var(--amber);}
+  .sec-sub{color:var(--ink-soft);font-size:0.9rem;margin:0 0 26px 0;}
+
+  /* ---------- Filters ---------- */
+  .filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px;}
+  .filters button{
+    font-family:'IBM Plex Mono',monospace;font-size:0.72rem;
+    background:none;border:1px solid var(--line-strong);color:var(--ink-soft);
+    padding:6px 14px;border-radius:999px;cursor:pointer;
+  }
+  .filters button:hover{border-color:var(--ink);color:var(--ink);}
+  .filters button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+
+  /* ---------- Project grid ---------- */
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:26px 24px;}
+  @media (max-width:620px){.grid{grid-template-columns:1fr;}}
+  .tile{
+    display:block;text-align:left;width:100%;background:none;border:none;padding:0;
+    cursor:pointer;font-family:inherit;color:var(--ink);
+  }
+  .tile.feature{grid-column:1 / -1;}
+  .tile-photo{
+    aspect-ratio:4/3;border:1px solid var(--line);background:var(--paper-2);
+    overflow:hidden;position:relative;
+  }
+  .tile.feature .tile-photo{aspect-ratio:21/9;}
+  .tile-photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .25s ease;}
+  .tile:hover .tile-photo img{transform:scale(1.03);}
+  .tile:focus-visible .tile-photo{outline:2px solid var(--blue);outline-offset:2px;}
+  .ph{
+    display:none;position:absolute;inset:0;align-items:center;justify-content:center;
+    text-align:center;padding:12px;font-family:'IBM Plex Mono',monospace;
+    font-size:0.64rem;line-height:1.5;color:var(--ink-soft);
+    background:repeating-linear-gradient(45deg,var(--paper-2),var(--paper-2) 8px,var(--paper) 8px,var(--paper) 16px);
+  }
+  .tile-badge{
+    position:absolute;top:10px;left:10px;
+    background:var(--ink);color:var(--paper);
+    font-family:'IBM Plex Mono',monospace;font-size:0.62rem;
+    padding:3px 9px;border-radius:3px;
+  }
+  .tile-meta{margin-top:11px;}
+  .tile-cat{font-family:'IBM Plex Mono',monospace;font-size:0.66rem;color:var(--amber);}
+  .tile-title{font-size:0.98rem;font-weight:600;margin:3px 0 3px 0;}
+  .tile.feature .tile-title{font-size:1.2rem;}
+  .tile-proof{font-size:0.84rem;color:var(--ink-soft);margin:0;}
+  .tile-more{
+    font-family:'IBM Plex Mono',monospace;font-size:0.68rem;color:var(--ink-soft);
+    margin-top:7px;opacity:0;transition:opacity .15s ease;
+  }
+  .tile:hover .tile-more,.tile:focus-visible .tile-more{opacity:1;color:var(--blue);}
+
+  /* ---------- Experience ---------- */
+  .xp{padding:18px 0;border-top:1px solid var(--line);}
+  .xp:last-child{border-bottom:1px solid var(--line);}
+  .xp-head{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:6px;}
+  .xp-role{font-weight:600;font-size:1rem;margin:0;}
+  .xp-when{font-family:'IBM Plex Mono',monospace;font-size:0.75rem;color:var(--ink-soft);}
+  .xp-org{color:var(--ink-soft);font-size:0.86rem;margin:2px 0 9px 0;}
+  .xp ul{margin:0;padding-left:19px;}
+  .xp li{margin-bottom:5px;color:var(--ink-soft);font-size:0.9rem;}
+
+  /* ---------- Other projects ---------- */
+  .other li{
+    display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;
+    padding:11px 0;border-bottom:1px solid var(--line);
+  }
+  .other{list-style:none;margin:0;padding:0;}
+  .other li:first-child{border-top:1px solid var(--line);}
+  .other .t{font-weight:600;font-size:0.9rem;min-width:230px;}
+  .other .d{color:var(--ink-soft);font-size:0.86rem;text-align:right;flex:1 1 300px;}
+  @media (max-width:600px){.other .d{text-align:left;}}
+
+  /* ---------- Skills ---------- */
+  .skills{display:grid;grid-template-columns:1fr 1fr 1fr;gap:22px;}
+  @media (max-width:620px){.skills{grid-template-columns:1fr;}}
+  .skills h3{
+    font-family:'IBM Plex Mono',monospace;font-size:0.68rem;color:var(--ink-soft);
+    margin:0 0 8px 0;font-weight:500;
+  }
+  .skills p{margin:0;font-size:0.92rem;}
+
+  /* ---------- Footer ---------- */
+  footer{padding:54px 0 64px 0;border-top:1px solid var(--line);scroll-margin-top:92px;text-align:center;}
+  footer .cta{font-size:1.15rem;font-weight:600;margin:0 0 18px 0;}
+  .foot-links{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;font-size:0.85rem;font-family:'IBM Plex Mono',monospace;}
+  .foot-links a,.foot-links span{color:var(--ink-soft);text-decoration:none;}
+  .foot-links a:hover{color:var(--blue);}
+
+  /* ---------- Modal ---------- */
+  .modal{
+    position:fixed;inset:0;z-index:50;background:rgba(22,25,29,0.55);
+    display:flex;align-items:flex-start;justify-content:center;
+    padding:40px 20px;overflow-y:auto;
+  }
+  .modal[hidden]{display:none;}
+  .modal-panel{
+    background:var(--paper);border:1px solid var(--line-strong);
+    max-width:760px;width:100%;position:relative;
+  }
+  .modal-close{
+    position:absolute;top:12px;right:12px;z-index:2;
+    width:34px;height:34px;border-radius:50%;cursor:pointer;
+    background:rgba(22,25,29,0.85);color:var(--paper);border:none;font-size:1rem;
+  }
+  .modal-media{position:relative;background:var(--paper-2);border-bottom:1px solid var(--line);}
+  .modal-media img{width:100%;max-height:52vh;object-fit:contain;display:block;background:#000;}
+  .modal-media video{width:100%;max-height:52vh;display:block;background:#000;}
+  .modal-media .ph{position:relative;height:200px;display:none;}
+  .modal-thumbs{display:flex;gap:8px;padding:10px;border-bottom:1px solid var(--line);flex-wrap:wrap;}
+  .modal-thumbs img{width:62px;height:46px;object-fit:cover;border:1px solid var(--line-strong);cursor:pointer;}
+  .modal-thumbs img[aria-current="true"]{outline:2px solid var(--blue);}
+  .modal-body{padding:24px 26px 28px 26px;}
+  .modal-cat{font-family:'IBM Plex Mono',monospace;font-size:0.68rem;color:var(--amber);}
+  .modal-body h3{font-size:1.35rem;margin:4px 0 16px 0;}
+  .field{margin-bottom:14px;}
+  .field b{
+    display:block;font-family:'IBM Plex Mono',monospace;font-size:0.66rem;
+    letter-spacing:0.04em;color:var(--ink-soft);font-weight:500;margin-bottom:3px;
+  }
+  .field p{margin:0;font-size:0.94rem;}
+  .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px;}
+  .tag{
+    font-family:'IBM Plex Mono',monospace;font-size:0.68rem;
+    background:var(--paper-2);color:var(--ink-soft);
+    padding:3px 9px;border-radius:20px;border:1px solid var(--line);
+  }
+  .modal-nav{
+    display:flex;justify-content:space-between;gap:10px;
+    padding:14px 26px 20px 26px;border-top:1px solid var(--line);
+  }
+  .modal-nav button{
+    background:none;border:1px solid var(--line-strong);color:var(--ink-soft);
+    font-family:'IBM Plex Mono',monospace;font-size:0.72rem;
+    padding:7px 14px;border-radius:999px;cursor:pointer;
+  }
+  .modal-nav button:hover{border-color:var(--ink);color:var(--ink);}
+  .modal-nav button:disabled{opacity:0.35;cursor:default;}
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    .tile-photo img{transition:none;}
+  }
+</style>
+</head>
+<body>
+
+<div class="floating-nav">
+  <div class="pillbar">
+    <a href="#projects">Projects</a>
+    <a href="#about">About</a>
+    <a class="pill-dark" href="mailto:pkiron@ualberta.ca">Contact</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="avatar">
+      <img src="images/pranav-headshot.jpg" alt="Portrait of Pranav Kiron" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="ph">PHOTO<br>PENDING</div>
+    </div>
+
+    <h1 class="headline">Engineer focused on process control and industrial automation.</h1>
+
+    <p class="bio">Chemical Engineering (Computer Process Control) at the University of Alberta — working across process simulation, embedded controls, and applied software.</p>
+    <p class="bio">Most recently built a fully local AI document pipeline as an extern at Pfizer.</p>
+    <p class="bio">Open to internship and full-time roles in process engineering, controls, and automation across Canada.</p>
+
+    <div class="cta-row">
+      <a href="https://linkedin.com/in/pranavkiron" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="ghost" href="mailto:pkiron@ualberta.ca">Email me</a>
+    </div>
+
+    <div class="status-strip">
+      <div>PROGRAM<b>BSc Chemical Eng.</b></div>
+      <div>FOCUS<b>Process Control</b></div>
+      <div>STATUS<b>Open to internships &amp; full-time</b></div>
+      <div>ELIGIBILITY<b>Canadian PR</b></div>
+    </div>
+  </div>
+</header>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="idx">01</span>
+      <h2>Projects</h2>
+    </div>
+    <p class="sec-sub">Click any project to see the goal, approach, and results.</p>
+
+    <div class="filters" role="group" aria-label="Filter projects by category">
+      <button data-filter="all" aria-pressed="true">All</button>
+      <button data-filter="controls" aria-pressed="false">Controls &amp; Automation</button>
+      <button data-filter="simulation" aria-pressed="false">Process Simulation</button>
+      <button data-filter="rd" aria-pressed="false">R&amp;D</button>
+      <button data-filter="design" aria-pressed="false">Design</button>
+    </div>
+
+    <div class="grid" id="grid">
+
+      <button class="tile feature" data-project="featured" data-cat="controls">
+        <div class="tile-photo">
+          <img src="images/featured-demo-poster.jpg" alt="AI document pipeline demo at Pfizer" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+          <div class="ph">VIDEO POSTER PENDING<br>images/featured-demo-poster.jpg</div>
+          <span class="tile-badge">▶ DEMO VIDEO</span>
+        </div>
+        <div class="tile-meta">
+          <p class="tile-cat">FEATURED — PFIZER EXTERNSHIP</p>
+          <p class="tile-title">AI Document Insights Pipeline</p>
+          <p class="tile-proof">Answer accuracy raised from 33% to 83% across seven document types — fully local, zero cloud cost.</p>
+          <p class="tile-more">Open →</p>
+        </div>
+      </button>
+
+      <button class="tile" data-project="monitoring" data-cat="controls">
+        <div class="tile-photo">
+          <img src="images/project-monitoring.jpg" alt="Multi-variable process monitoring system" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+          <div class="ph">IMAGE PENDING<br>images/project-monitoring.jpg</div>
+        </div>
+        <div class="tile-meta">
+          <p class="tile-cat">CONTROLS · ARDUINO</p>
+          <p class="tile-title">Multi-Variable Process Monitoring</p>
+          <p class="tile-proof">Live temperature, humidity, and level readings across three calibrated sensor channels.</p>
+          <p class="tile-more">Open →</p>
+        </div>
+      </button>
+
+      <button class="tile" data-project="pid-arduino" data-cat="controls">
+        <div class="tile-photo">
+          <img src="images/project-pid-arduino.jpg" alt="PID controller response curve" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+          <div class="ph">IMAGE PENDING<br>images/project-pid-arduino.jpg</div>
+        </div>
+        <div class="tile-meta">
+          <p class="tile-cat">CONTROLS · MATLAB</p>
+          <p class="tile-title">Automated Feedback Control (PID)</p>
+          <p class="tile-proof">Steady-state error eliminated with stable setpoint tracking under disturbance.</p>
+          <p class="tile-more">Open →</p>
+        </div>
+      </button>
+
+      <button class="tile" data-project="pid-simulink" data-cat="controls">
+        <div class="tile-photo">
+          <img src="images/project-pid-simulink.jpg" alt="Simulink PID model and step response" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+          <div class="ph">IMAGE PENDING<br>images/project-pid-simulink.jpg</div>
+        </div>
+        <div class="tile-meta">
+          <p class="tile-cat">CONTROLS · SIMULINK</p>
+          <p class="tile-title">PID Controller Simulation</p>
+          <p class="tile-proof">System error reduced 30% with improved response time and stability.</p>
+          <p class="tile-more">Open →</p>
+        </div>
+      </button>
+
+      <button class="tile" data-project="steam-cycle" data-cat="simulation">
+        <div class="tile-photo">
+          <img src="images/project-steam-cycle.jpg" alt="Symmetry steam cycle flowsheet" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+          <div class="ph">IMAGE PENDING<br>images/project-steam-cycle.jpg</div>
+        </div>
+        <div class="tile-meta">
+          <p class="tile-cat">SIMULATION · SYMMETRY</p>
+          <p class="tile-title">Steam Cycle Modeling &amp; Energy Analysis</p>
+          <p class="tile-proof">Full power cycle benchmarked across three operating scenarios.</p>
+          <p class="tile-more">Open →</p>
+        </div>
+      </button>
+
+      <button class="tile" data-project="refrigeration" data-cat="simulation">
+        <div class="tile-photo">
+          <img src="images/project-refrigeration.jpg" alt="Propane refrigeration loop flowsheet" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+          <div class="ph">IMAGE PENDING<br>images/project-refrigeration.jpg</div>
+        </div>
+        <div class="tile-meta">
+          <p class="tile-cat">SIMULATION · SYMMETRY</p>
+          <p class="tile-title">Propane Refrigeration Loop</p>
+          <p class="tile-proof">Converged flowsheet with realistic vapour–liquid equilibrium across sensitivity cases.</p>
+          <p class="tile-more">Open →</p>
+        </div>
+      </button>
+
+      <button class="tile" data-project="gas-tank" data-cat="rd">
+        <div class="tile-photo">
+          <img src="images/project-gas-tank.jpg" alt="Predicted vs measured tank temperature plot" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+          <div class="ph">IMAGE PENDING<br>images/project-gas-tank.jpg</div>
+        </div>
+        <div class="tile-meta">
+          <p class="tile-cat">R&amp;D · THERMODYNAMICS</p>
+          <p class="tile-title">Unsteady-State Gas Tank Filling</p>
+          <p class="tile-proof">Model predictions validated against 10 Hz experimental data with uncertainty analysis.</p>
+          <p class="tile-more">Open →</p>
+        </div>
+      </button>
+
+      <button class="tile" data-project="shelter-design" data-cat="design">
+        <div class="tile-photo">
+          <img src="images/project-shelter-design.jpg" alt="Homeless shelter floor plan" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+          <div class="ph">IMAGE PENDING<br>images/project-shelter-design.jpg</div>
+        </div>
+        <div class="tile-meta">
+          <p class="tile-cat">DESIGN · TEAM LEAD</p>
+          <p class="tile-title">Homeless Shelter Design</p>
+          <p class="tile-proof">Site-tailored floor plan delivered on time as Design Lead.</p>
+          <p class="tile-more">Open →</p>
+        </div>
+      </button>
+
+      <button class="tile" data-project="vacuum-flask" data-cat="design">
+        <div class="tile-photo">
+          <img src="images/project-vacuum-flask.jpg" alt="SolidWorks vacuum flask assembly" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+          <div class="ph">IMAGE PENDING<br>images/project-vacuum-flask.jpg</div>
+        </div>
+        <div class="tile-meta">
+          <p class="tile-cat">DESIGN · SOLIDWORKS</p>
+          <p class="tile-title">Functional Vacuum Flask</p>
+          <p class="tile-proof">9-component assembly held to 0.5 mm shell and 0.2 mm clearance specs.</p>
+          <p class="tile-more">Open →</p>
+        </div>
+      </button>
+
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="idx">02</span>
+      <h2>Experience</h2>
+    </div>
+    <p class="sec-sub">Where I've applied this work.</p>
+
+    <div class="xp">
+      <div class="xp-head">
+        <p class="xp-role">AI Document Insights Extern</p>
+        <p class="xp-when">Jun 2026 – Aug 2026</p>
+      </div>
+      <p class="xp-org">Pfizer · Remote (via Extern Platform)</p>
+      <ul>
+        <li>Built a local RAG pipeline (OCR + FAISS + open-source LLMs) for unstructured compliance PDFs.</li>
+        <li>Raised answer accuracy from 33% to 83% by fixing query routing and adding confidence-gated classification.</li>
+        <li>Delivered a Gradio demo, evaluation report, and production deployment roadmap.</li>
+      </ul>
+    </div>
+
+    <div class="xp">
+      <div class="xp-head">
+        <p class="xp-role">Telemetry Systems Design</p>
+        <p class="xp-when">Sep 2024 – Sep 2025</p>
+      </div>
+      <p class="xp-org">UofA Solar Car Club · Student Design Team</p>
+      <ul>
+        <li>Built a real-time solar telemetry system on Raspberry Pi 4 with FreeRTOS over Raspbian.</li>
+        <li>Configured multi-channel GPIO sensor integration for continuous power and efficiency tracking.</li>
+      </ul>
+    </div>
+
+    <div class="xp">
+      <div class="xp-head">
+        <p class="xp-role">Sponsorships Committee Member</p>
+        <p class="xp-when">Sep 2024 – Sep 2025</p>
+      </div>
+      <p class="xp-org">UofA Solar Car Club · Student Design Team</p>
+      <ul>
+        <li>Managed end-to-end grant applications, securing FESP and SOGF approvals.</li>
+        <li>Maintained sponsor partnerships including Ansys and SolidWorks.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="idx">03</span>
+      <h2>Skills</h2>
+    </div>
+    <div class="skills">
+      <div><h3>PROGRAMMING</h3><p>Python, MATLAB, SQL, Arduino IDE</p></div>
+      <div><h3>PROCESS &amp; SIMULATION</h3><p>Aspen Symmetry, Simulink, Simscape, Process Modeling, PID Control</p></div>
+      <div><h3>ENGINEERING &amp; TOOLS</h3><p>SolidWorks, Raspberry Pi, Data Acquisition, WaveForms, Excel</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="other-projects">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="idx">04</span>
+      <h2>Other Projects</h2>
+    </div>
+    <ul class="other">
+      <li><span class="t">Slab Temperature Control</span><span class="d">Closed-loop thermal control — LM35 sensing, MOSFET switching, Arduino/MATLAB logic.</span></li>
+      <li><span class="t">High-Power Actuator Interface</span><span class="d">MOSFET/relay driver with flyback protection and PWM speed control.</span></li>
+      <li><span class="t">Real Life Security System</span><span class="d">MUX/DEMUX-based digital logic lock-verification system.</span></li>
+      <li><span class="t">7-Segment Display Decoders</span><span class="d">Boolean-derived decoder logic synchronizing dual LED displays.</span></li>
+      <li><span class="t">Lock Combination Solver</span><span class="d">Python brute-force search across all six-digit combinations.</span></li>
+      <li><span class="t">Tuition Savings Calculator</span><span class="d">Python financial-planning tool using nested conditional logic.</span></li>
+      <li><span class="t">Human Arm &amp; Pendulum Dynamics</span><span class="d">Video-based motion analysis validating rigid-body models.</span></li>
+    </ul>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <p class="cta">Let's talk about process control, embedded systems, or where those two overlap.</p>
+    <div class="foot-links">
+      <a href="mailto:pkiron@ualberta.ca">pkiron@ualberta.ca</a>
+      <a href="https://linkedin.com/in/pranavkiron" target="_blank" rel="noopener">linkedin.com/in/pranavkiron</a>
+      <span>Canada · Canadian PR</span>
+    </div>
+  </div>
+</footer>
+
+<div id="modal" class="modal" hidden role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal-panel">
+    <button class="modal-close" aria-label="Close">✕</button>
+    <div class="modal-media" id="modal-media"></div>
+    <div class="modal-thumbs" id="modal-thumbs"></div>
+    <div class="modal-body">
+      <p class="modal-cat" id="modal-cat"></p>
+      <h3 id="modal-title"></h3>
+      <div id="modal-fields"></div>
+      <div class="tags" id="modal-tags"></div>
+    </div>
+    <div class="modal-nav">
+      <button id="modal-prev">← Previous</button>
+      <button id="modal-next">Next →</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var DATA = {
+    "featured":{
+      cat:"FEATURED — PFIZER EXTERNSHIP · SUMMER 2026",
+      title:"AI Document Insights Pipeline",
+      video:"videos/featured-demo.mp4",
+      poster:"images/featured-demo-poster.jpg",
+      images:[],
+      fields:[
+        ["Goal","Extract and classify data from unstructured pharmaceutical compliance PDFs without relying on any cloud service or paid API."],
+        ["Approach","Built a fully local, end-to-end RAG pipeline integrating OCR, FAISS vector retrieval, and open-source LLMs. Engineered document classification and boundary detection to segment multi-document PDFs into distinct logical units, enabling metadata-tagged chunking and source-traceable retrieval."],
+        ["Result","Improved answer accuracy from 33% to 83% on the evaluation set by diagnosing faults in LLM-based query routing and implementing confidence-gated classification across seven document types. Delivered a working Gradio interface, a technical evaluation report benchmarking retrieval quality, and a production deployment roadmap — at zero cloud or API cost."]
+      ],
+      tags:["RAG","FAISS","OCR","Open-source LLMs","Gradio","Python"]
+    },
+    "monitoring":{
+      cat:"CONTROLS &amp; AUTOMATION · ARDUINO",
+      title:"Multi-Variable Process Monitoring System",
+      images:["images/project-monitoring.jpg","images/project-monitoring-2.jpg","images/project-monitoring-3.jpg"],
+      fields:[
+        ["Goal","Build a data acquisition platform converting raw sensor signals into live, monitorable process readings."],
+        ["Approach","Calibrated LM35 and DHT11 sensors and programmed an HC-SR04 ultrasonic sensor on an Arduino Uno, with I2C display integration for live readout."],
+        ["Result","Delivered accurate, non-contact temperature, humidity, and level monitoring across three sensor channels — a working foundation for automated process monitoring."]
+      ],
+      tags:["Arduino","Data Acquisition","Instrumentation","I2C"]
+    },
+    "pid-arduino":{
+      cat:"CONTROLS &amp; AUTOMATION · MATLAB",
+      title:"Automated Feedback Control (PID)",
+      images:["images/project-pid-arduino.jpg","images/project-pid-arduino-2.jpg","images/project-pid-arduino-3.jpg"],
+      fields:[
+        ["Goal","Simulate a self-regulating chemical process using closed-loop feedback control."],
+        ["Approach","Designed and tuned a discrete PID controller (Kp, Ki, anti-windup logic) in MATLAB App Designer, driving sensor input through to actuator output."],
+        ["Result","Eliminated steady-state error and held stable setpoint tracking under external lighting disturbances, with no controller saturation."]
+      ],
+      tags:["Arduino","MATLAB App Designer","PID","Anti-windup"]
+    },
+    "pid-simulink":{
+      cat:"CONTROLS &amp; AUTOMATION · SIMULINK",
+      title:"PID Controller Simulation for System Optimization",
+      images:["images/project-pid-simulink.jpg","images/project-pid-simulink-2.jpg","images/project-pid-simulink-3.jpg"],
+      fields:[
+        ["Goal","Design and tune a PID control system for a dynamic mechanical system."],
+        ["Approach","Modeled the system and iterated on gain parameters in MATLAB, Simulink, and Simscape across multiple simulation runs."],
+        ["Result","Reduced system error by 30% and improved response time while enhancing overall closed-loop stability."]
+      ],
+      tags:["MATLAB","Simulink","Simscape","Control Tuning"]
+    },
+    "steam-cycle":{
+      cat:"PROCESS SIMULATION · SYMMETRY",
+      title:"Steam Cycle Modeling &amp; Energy Analysis",
+      images:["images/project-steam-cycle.jpg","images/project-steam-cycle-2.jpg","images/project-steam-cycle-3.jpg"],
+      fields:[
+        ["Goal","Benchmark a complete power-generation steam cycle across varying operating conditions."],
+        ["Approach","Modeled boiler, turbine, condenser, and pump unit operations in Symmetry using the Advanced Peng–Robinson equation of state."],
+        ["Result","Compared system performance across three operating scenarios (pressure, temperature, flow rate, efficiency) with consistent results and pressure-drop and vapour-fraction modeling throughout."]
+      ],
+      tags:["Aspen Symmetry","Peng-Robinson EOS","Process Simulation"]
+    },
+    "refrigeration":{
+      cat:"PROCESS SIMULATION · SYMMETRY",
+      title:"Propane Refrigeration Loop Simulation",
+      images:["images/project-refrigeration.jpg","images/project-refrigeration-2.jpg","images/project-refrigeration-3.jpg"],
+      fields:[
+        ["Goal","Build a converged steady-state refrigeration cycle with realistic vapour–liquid equilibrium."],
+        ["Approach","Built a Symmetry flowsheet with compressor, condenser, chiller, and expansion valve; evaluated property packages and defined degrees of freedom."],
+        ["Result","Achieved full flowsheet convergence across sensitivity cases, analyzing pressure, temperature, pressure drop, and heat load impacts."]
+      ],
+      tags:["Aspen Symmetry","VLE","Refrigeration Cycle"]
+    },
+    "gas-tank":{
+      cat:"R&amp;D · THERMODYNAMICS",
+      title:"Unsteady-State Filling of a Gas Tank",
+      images:["images/project-gas-tank.jpg","images/project-gas-tank-2.jpg","images/project-gas-tank-3.jpg"],
+      fields:[
+        ["Goal","Predict final tank temperature evolution under adiabatic, unsteady-state filling conditions."],
+        ["Approach","Applied first-law mass and energy balances across multiple modeling assumptions, validated against 10 Hz pressure and temperature data acquisition."],
+        ["Result","Close alignment between predicted and measured temperature profiles, with model sensitivity assessed via Holman-method uncertainty analysis."]
+      ],
+      tags:["Thermodynamics","Data Acquisition","Uncertainty Analysis"]
+    },
+    "shelter-design":{
+      cat:"DESIGN · TEAM LEAD",
+      title:"Homeless Shelter Design",
+      images:["images/project-shelter-design.jpg","images/project-shelter-design-2.jpg","images/project-shelter-design-3.jpg"],
+      fields:[
+        ["Goal","Deliver a complete, site-tailored floor plan for a homeless shelter serving a high-needs area of Edmonton, AB."],
+        ["Approach","Led the design process as team Design Lead, coordinating implementation and prototyping phases with a multidisciplinary team."],
+        ["Result","Achieved full compliance with location-specific design requirements and on-time delivery of all prototyping milestones."]
+      ],
+      tags:["Design Lead","Floor Planning","Cross-functional Team"]
+    },
+    "vacuum-flask":{
+      cat:"DESIGN · SOLIDWORKS",
+      title:"Functional Vacuum Flask",
+      images:["images/project-vacuum-flask.jpg","images/project-vacuum-flask-2.jpg","images/project-vacuum-flask-3.jpg"],
+      fields:[
+        ["Goal","Parametrically model a multi-component vacuum flask assembly within a strict tolerance budget."],
+        ["Approach","Designed all 9 components in SolidWorks, applying transitional fits and precision assembly techniques."],
+        ["Result","Held 100% adherence to spec within a 4-week timeline — 0.5 mm shell thickness, 0.2 mm assembly clearance, and a consistent 56.00 mm inner-shell radius."]
+      ],
+      tags:["SolidWorks","Parametric Design","Tolerancing"]
+    }
+  };
+
+  var ORDER = ["featured","monitoring","pid-arduino","pid-simulink","steam-cycle","refrigeration","gas-tank","shelter-design","vacuum-flask"];
+
+  var modal = document.getElementById('modal');
+  var mMedia = document.getElementById('modal-media');
+  var mThumbs = document.getElementById('modal-thumbs');
+  var mCat = document.getElementById('modal-cat');
+  var mTitle = document.getElementById('modal-title');
+  var mFields = document.getElementById('modal-fields');
+  var mTags = document.getElementById('modal-tags');
+  var mPrev = document.getElementById('modal-prev');
+  var mNext = document.getElementById('modal-next');
+  var mClose = document.querySelector('.modal-close');
+  var current = null, lastFocus = null;
+
+  function imgExists(src, cb){
+    var t = new Image();
+    t.onload = function(){ cb(true); };
+    t.onerror = function(){ cb(false); };
+    t.src = src;
+  }
+
+  function renderMedia(key){
+    var d = DATA[key];
+    mMedia.innerHTML = '';
+    mThumbs.innerHTML = '';
+    mThumbs.style.display = 'none';
+
+    if(d.video){
+      var v = document.createElement('video');
+      v.controls = true; v.preload = 'none'; v.playsInline = true;
+      if(d.poster) v.poster = d.poster;
+      var s = document.createElement('source');
+      s.src = d.video; s.type = 'video/mp4';
+      v.appendChild(s);
+      mMedia.appendChild(v);
+      return;
+    }
+
+    var main = document.createElement('img');
+    main.alt = d.title;
+    mMedia.appendChild(main);
+    var fallback = document.createElement('div');
+    fallback.className = 'ph';
+    fallback.innerHTML = 'IMAGE PENDING';
+    mMedia.appendChild(fallback);
+
+    var found = [];
+    var pending = d.images.length;
+    if(pending === 0){ main.style.display='none'; fallback.style.display='flex'; return; }
+
+    d.images.forEach(function(src, i){
+      imgExists(src, function(ok){
+        if(ok) found.push({src:src, i:i});
+        pending--;
+        if(pending === 0){
+          found.sort(function(a,b){return a.i-b.i;});
+          if(found.length === 0){
+            main.style.display='none'; fallback.style.display='flex'; return;
+          }
+          main.src = found[0].src;
+          if(found.length > 1){
+            mThumbs.style.display = 'flex';
+            found.forEach(function(f, idx){
+              var t = document.createElement('img');
+              t.src = f.src; t.alt = d.title + ' view ' + (idx+1);
+              if(idx===0) t.setAttribute('aria-current','true');
+              t.addEventListener('click', function(){
+                main.src = f.src;
+                Array.prototype.forEach.call(mThumbs.children, function(c){ c.removeAttribute('aria-current'); });
+                t.setAttribute('aria-current','true');
+              });
+              mThumbs.appendChild(t);
+            });
+          }
+        }
+      });
+    });
+  }
+
+  function render(key){
+    var d = DATA[key];
+    if(!d) return;
+    current = key;
+    renderMedia(key);
+    mCat.innerHTML = d.cat;
+    mTitle.innerHTML = d.title;
+    mFields.innerHTML = d.fields.map(function(f){
+      return '<div class="field"><b>' + f[0] + '</b><p>' + f[1] + '</p></div>';
+    }).join('');
+    mTags.innerHTML = d.tags.map(function(t){ return '<span class="tag">' + t + '</span>'; }).join('');
+    var i = ORDER.indexOf(key);
+    mPrev.disabled = (i <= 0);
+    mNext.disabled = (i >= ORDER.length - 1);
+    modal.scrollTop = 0;
+  }
+
+  function open(key, updateHash){
+    if(!DATA[key]) return;
+    lastFocus = document.activeElement;
+    render(key);
+    modal.hidden = false;
+    document.body.classList.add('modal-open');
+    mClose.focus();
+    if(updateHash !== false){
+      try{ history.replaceState(null, '', '#project-' + key); }catch(e){ /* sandboxed preview: URL sync unavailable */ }
+    }
+  }
+
+  function close(){
+    modal.hidden = true;
+    document.body.classList.remove('modal-open');
+    mMedia.innerHTML = '';
+    current = null;
+    try{ history.replaceState(null, '', location.pathname + location.search); }catch(e){ /* sandboxed preview: URL sync unavailable */ }
+    if(lastFocus) lastFocus.focus();
+  }
+
+  document.querySelectorAll('.tile').forEach(function(tile){
+    tile.addEventListener('click', function(){ open(tile.dataset.project); });
+  });
+
+  mClose.addEventListener('click', close);
+  modal.addEventListener('click', function(e){ if(e.target === modal) close(); });
+  mPrev.addEventListener('click', function(){
+    var i = ORDER.indexOf(current);
+    if(i > 0) open(ORDER[i-1]);
+  });
+  mNext.addEventListener('click', function(){
+    var i = ORDER.indexOf(current);
+    if(i < ORDER.length-1) open(ORDER[i+1]);
+  });
+  document.addEventListener('keydown', function(e){
+    if(modal.hidden) return;
+    if(e.key === 'Escape') close();
+    if(e.key === 'ArrowLeft' && !mPrev.disabled) mPrev.click();
+    if(e.key === 'ArrowRight' && !mNext.disabled) mNext.click();
+  });
+
+  // Filters
+  var buttons = document.querySelectorAll('.filters button');
+  buttons.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var f = btn.dataset.filter;
+      buttons.forEach(function(b){ b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'); });
+      document.querySelectorAll('.tile').forEach(function(tile){
+        tile.style.display = (f === 'all' || tile.dataset.cat === f) ? '' : 'none';
+      });
+    });
+  });
+
+  // Deep-link support: open the matching modal on load (keeps resume hyperlinks working)
+  function openFromHash(){
+    var h = location.hash;
+    if(h.indexOf('#project-') === 0){
+      var key = h.replace('#project-',''); 
+      if(DATA[key]){
+        var sec = document.getElementById('projects');
+        if(sec) sec.scrollIntoView();
+        open(key, false);
+      }
+    } else if(h === '#featured'){
+      var sec2 = document.getElementById('projects');
+      if(sec2) sec2.scrollIntoView();
+      open('featured', false);
+    }
+  }
+  window.addEventListener('hashchange', openFromHash);
+  openFromHash();
+})();
+</script>
+
+</body>
+</html>
