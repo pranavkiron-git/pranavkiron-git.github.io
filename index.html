@@ -160,17 +160,22 @@
   @media (max-width:600px){.other .d{text-align:left;}}
 
   /* ---------- Skills ---------- */
-  .skills{display:grid;grid-template-columns:1fr 1fr 1fr;gap:22px;}
-  @media (max-width:620px){.skills{grid-template-columns:1fr;}}
-  .skills h3{
-    font-family:'IBM Plex Mono',monospace;font-size:0.68rem;color:var(--ink-soft);
-    margin:0 0 8px 0;font-weight:500;
+  .about-block{padding:22px 0;border-top:1px solid var(--line);}
+  .about-block:first-of-type{border-top:none;padding-top:6px;}
+  .about-block h3{font-size:1.05rem;margin:0 0 12px 0;font-weight:600;}
+  .about-block > p{margin:0 0 12px 0;color:var(--ink-soft);font-size:0.95rem;max-width:70ch;}
+  .about-block > p:last-child{margin-bottom:0;}
+  .about-block ul{margin:0;padding-left:19px;}
+  .about-block li{margin-bottom:9px;color:var(--ink-soft);font-size:0.92rem;}
+  .about-block li b{color:var(--ink);font-weight:600;}
+  .skills-line{
+    font-family:'IBM Plex Mono',monospace;font-size:0.82rem;
+    color:var(--ink-soft);line-height:2;max-width:72ch;margin:0;
   }
-  .skills p{margin:0;font-size:0.92rem;}
 
   /* ---------- Footer ---------- */
   footer{padding:54px 0 64px 0;border-top:1px solid var(--line);scroll-margin-top:92px;text-align:center;}
-  footer .cta{font-size:1.15rem;font-weight:600;margin:0 0 18px 0;}
+  footer .cta{font-size:1.02rem;font-weight:500;margin:0 auto 20px auto;max-width:56ch;line-height:1.6;}
   .foot-links{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;font-size:0.85rem;font-family:'IBM Plex Mono',monospace;}
   .foot-links a,.foot-links span{color:var(--ink-soft);text-decoration:none;}
   .foot-links a:hover{color:var(--blue);}
@@ -280,7 +285,6 @@
       <button data-filter="all" aria-pressed="true">All</button>
       <button data-filter="controls" aria-pressed="false">Controls &amp; Automation</button>
       <button data-filter="simulation" aria-pressed="false">Process Simulation</button>
-      <button data-filter="rd" aria-pressed="false">R&amp;D</button>
     </div>
 
     <div class="grid" id="grid">
@@ -390,18 +394,6 @@
         </div>
       </button>
 
-      <button class="tile" data-project="gas-tank" data-cat="rd">
-        <div class="tile-photo">
-          <img src="images/project-gas-tank.jpg" alt="Predicted vs measured tank temperature plot" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-          <div class="ph">IMAGE PENDING<br>images/project-gas-tank.jpg</div>
-        </div>
-        <div class="tile-meta">
-          <p class="tile-cat">R&amp;D · THERMODYNAMICS</p>
-          <p class="tile-title">Unsteady-State Gas Tank Filling</p>
-          <p class="tile-proof">Model predictions validated against 10 Hz experimental data with uncertainty analysis.</p>
-          <p class="tile-more">Open →</p>
-        </div>
-      </button>
 
     </div>
   </div>
@@ -411,85 +403,50 @@
   <div class="wrap">
     <div class="sec-head">
       <span class="idx">02</span>
-      <h2>Experience</h2>
-    </div>
-    <p class="sec-sub">Where I've applied this work.</p>
-
-    <div class="xp">
-      <div class="xp-head">
-        <p class="xp-role">AI Document Insights Extern</p>
-        <p class="xp-when">Jun 2026 – Aug 2026</p>
-      </div>
-      <p class="xp-org">Pfizer · Remote (via Extern Platform)</p>
-      <ul>
-        <li>Built a local RAG pipeline (OCR + FAISS + open-source LLMs) for unstructured compliance PDFs.</li>
-        <li>Raised answer accuracy from 33% to 83% by fixing query routing and adding confidence-gated classification.</li>
-        <li>Delivered a Gradio demo, evaluation report, and production deployment roadmap.</li>
-      </ul>
+      <h2>About</h2>
     </div>
 
-    <div class="xp">
-      <div class="xp-head">
-        <p class="xp-role">Telemetry Systems Design</p>
-        <p class="xp-when">Sep 2024 – Sep 2025</p>
-      </div>
-      <p class="xp-org">UofA Solar Car Club · Student Design Team</p>
-      <ul>
-        <li>Built a real-time solar telemetry system on Raspberry Pi 4 with FreeRTOS over Raspbian.</li>
-        <li>Configured multi-channel GPIO sensor integration for continuous power and efficiency tracking.</li>
-      </ul>
+    <div class="about-block">
+      <h3>Who I am</h3>
+      <p>I'm a Chemical Engineering student at the University of Alberta, specializing in Computer Process Control.</p>
+      <p>I'm an optimizer by instinct. I enjoy building things from scratch, but what really holds my attention is taking a solution that already works and finding where it's leaving performance on the table. At Pfizer that meant inheriting a retrieval pipeline that answered a third of its queries correctly, tracing the failures to query routing rather than the model itself, and getting it to 83%. In my own projects it usually looks like re-running a controller with different gains, or modeling the same system three ways to find out which representation I'd gotten wrong.</p>
+      <p>Process control appeals to me for the same reason. It's a field built around the question of how much better an existing process can be made to run.</p>
     </div>
 
-    <div class="xp">
-      <div class="xp-head">
-        <p class="xp-role">Sponsorships Committee Member</p>
-        <p class="xp-when">Sep 2024 – Sep 2025</p>
-      </div>
-      <p class="xp-org">UofA Solar Car Club · Student Design Team</p>
-      <ul>
-        <li>Managed end-to-end grant applications, securing FESP and SOGF approvals.</li>
-        <li>Maintained sponsor partnerships including Ansys and SolidWorks.</li>
-      </ul>
+    <div class="about-block">
+      <h3>Core skills</h3>
+      <p class="skills-line">Python · MATLAB · Simulink · Simscape · Aspen Symmetry · Arduino · Raspberry Pi · SolidWorks · SQL · PID control · data acquisition · process modeling</p>
     </div>
-  </div>
-</section>
 
-<section id="skills">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="idx">03</span>
-      <h2>Skills</h2>
+    <div class="about-block">
+      <h3>What makes me stand out</h3>
+      <p>Most chemical engineering students stop at simulation. I also wire the circuit, write the firmware, and check the model against measured data — which means I can take a control problem from process fundamentals through to a working prototype, and tell you honestly where the prototype falls short.</p>
+      <p>The Pfizer externship added a software dimension to that. Process fundamentals, embedded hardware, and applied software rarely sit in one person at this stage, and increasingly they're the same job.</p>
     </div>
-    <div class="skills">
-      <div><h3>PROGRAMMING</h3><p>Python, MATLAB, SQL, Arduino IDE</p></div>
-      <div><h3>PROCESS &amp; SIMULATION</h3><p>Aspen Symmetry, Simulink, Simscape, Process Modeling, PID Control</p></div>
-      <div><h3>ENGINEERING &amp; TOOLS</h3><p>SolidWorks, Raspberry Pi, Data Acquisition, WaveForms, Excel</p></div>
-    </div>
+
   </div>
 </section>
 
 <section id="other-projects">
   <div class="wrap">
     <div class="sec-head">
-      <span class="idx">04</span>
+      <span class="idx">03</span>
       <h2>Other Projects</h2>
     </div>
     <ul class="other">
+      <li><span class="t">Unsteady-State Gas Tank Filling</span><span class="d">First-law energy balances validated against 10 Hz experimental data with Holman-method uncertainty analysis.</span></li>
       <li><span class="t">Multi-Variable Process Monitoring</span><span class="d">Live temperature, humidity, and distance readings via calibrated LM35, DHT11, and HC-SR04 sensors with I2C display.</span></li>
       <li><span class="t">Homeless Shelter Design</span><span class="d">Site-tailored floor plan for a high-needs Edmonton location, led as Design Lead.</span></li>
       <li><span class="t">Functional Vacuum Flask</span><span class="d">9-component SolidWorks assembly held to 0.5 mm shell and 0.2 mm clearance specs.</span></li>
       <li><span class="t">Real Life Security System</span><span class="d">MUX/DEMUX-based digital logic lock-verification system.</span></li>
       <li><span class="t">7-Segment Display Decoders</span><span class="d">Boolean-derived decoder logic synchronizing dual LED displays.</span></li>
-      <li><span class="t">Lock Combination Solver</span><span class="d">Python brute-force search across all six-digit combinations.</span></li>
-      <li><span class="t">Tuition Savings Calculator</span><span class="d">Python financial-planning tool using nested conditional logic.</span></li>
-      <li><span class="t">Human Arm &amp; Pendulum Dynamics</span><span class="d">Video-based motion analysis validating rigid-body models.</span></li>
     </ul>
   </div>
 </section>
 
 <footer id="contact">
   <div class="wrap">
-    <p class="cta">Let's talk about process control, embedded systems, or where those two overlap.</p>
+    <p class="cta">I'm currently seeking internship and full-time opportunities in process engineering, controls, and automation. If my work aligns with what your team is building, I'd welcome the opportunity to connect.</p>
     <div class="foot-links">
       <a href="mailto:pkiron@ualberta.ca">pkiron@ualberta.ca</a>
       <a href="https://linkedin.com/in/pranavkiron" target="_blank" rel="noopener">linkedin.com/in/pranavkiron</a>
@@ -608,21 +565,10 @@
         ["Result","Achieved full flowsheet convergence across sensitivity cases, analyzing pressure, temperature, pressure drop, and heat load impacts."]
       ],
       tags:["Aspen Symmetry","VLE","Refrigeration Cycle"]
-    },
-    "gas-tank":{
-      cat:"R&amp;D · THERMODYNAMICS",
-      title:"Unsteady-State Filling of a Gas Tank",
-      images:["images/project-gas-tank.jpg","images/project-gas-tank-2.jpg","images/project-gas-tank-3.jpg"],
-      fields:[
-        ["Goal","Predict final tank temperature evolution under adiabatic, unsteady-state filling conditions."],
-        ["Approach","Applied first-law mass and energy balances across multiple modeling assumptions, validated against 10 Hz pressure and temperature data acquisition."],
-        ["Result","Close alignment between predicted and measured temperature profiles, with model sensitivity assessed via Holman-method uncertainty analysis."]
-      ],
-      tags:["Thermodynamics","Data Acquisition","Uncertainty Analysis"]
     }
   };
 
-  var ORDER = ["featured","water-level","slab-temp","actuator","pid-arduino","dynamics-modeling","steam-cycle","refrigeration","gas-tank"];
+  var ORDER = ["featured","water-level","slab-temp","actuator","pid-arduino","dynamics-modeling","steam-cycle","refrigeration"];
 
   var modal = document.getElementById('modal');
   var mMedia = document.getElementById('modal-media');
