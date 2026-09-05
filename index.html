@@ -313,6 +313,19 @@
         </div>
       </button>
 
+      <button class="tile" data-project="water-level" data-cat="controls">
+        <div class="tile-photo">
+          <img src="images/project-water-level.jpg" alt="Wiring schematic for the ultrasonic water level monitoring system" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+          <div class="ph">IMAGE PENDING<br>images/project-water-level.jpg</div>
+        </div>
+        <div class="tile-meta">
+          <p class="tile-cat">CONTROLS · ISA DESIGN CHALLENGE</p>
+          <p class="tile-title">Ultrasonic Water Level Monitoring System</p>
+          <p class="tile-proof">Multi-threshold level detection with tiered LED alerts and live LCD readout, built in a team competition.</p>
+          <p class="tile-more">Open →</p>
+        </div>
+      </button>
+
       <button class="tile" data-project="slab-temp" data-cat="controls">
         <div class="tile-photo">
           <img src="images/project-slab-temp.jpg" alt="Slab temperature control prototype with heater pad and MOSFET switching" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
@@ -567,6 +580,17 @@
       ],
       tags:["Arduino","Data Acquisition","Instrumentation","I2C"]
     },
+    "water-level":{
+      cat:"CONTROLS &amp; AUTOMATION · UofA ISA DESIGN CHALLENGE",
+      title:"Ultrasonic Water Level Monitoring System",
+      images:["images/project-water-level.jpg","images/project-water-level-2.jpg","images/project-water-level-3.jpg","images/project-water-level-4.jpg"],
+      fields:[
+        ["Goal","Design a system that continuously measures water level in a tank and triggers escalating alerts as it approaches critical high and low thresholds — the ISA Design Challenge brief called for detection of at least two levels, alerts within 2 seconds, and repeatable performance across consecutive tests."],
+        ["My role","Built on a team alongside electrical engineering students. I owned the Arduino firmware and the breadboard wiring — writing the ultrasonic timing and distance-conversion logic, mapping measured distance to discrete level bands, and wiring the sensor, LCD, and multi-stage LED alert array into a single working circuit."],
+        ["Result","Delivered a working prototype that converted HC-SR04 echo timing into live level readings on an I2C LCD, with a green/yellow/red LED array escalating as water approached critical levels. Demonstrated repeatable detection across test runs within the competition's 1-litre container and 2-second alert constraints."]
+      ],
+      tags:["Arduino","HC-SR04 Ultrasonic","I2C LCD","Circuit Wiring","Team Project"]
+    },
     "slab-temp":{
       cat:"CONTROLS &amp; AUTOMATION · ARDUINO + MATLAB",
       title:"Slab Temperature Control",
@@ -668,7 +692,7 @@
     }
   };
 
-  var ORDER = ["featured","monitoring","slab-temp","actuator","pid-arduino","pid-simulink","steam-cycle","refrigeration","gas-tank","shelter-design","vacuum-flask"];
+  var ORDER = ["featured","monitoring","water-level","slab-temp","actuator","pid-arduino","pid-simulink","steam-cycle","refrigeration","gas-tank","shelter-design","vacuum-flask"];
 
   var modal = document.getElementById('modal');
   var mMedia = document.getElementById('modal-media');
