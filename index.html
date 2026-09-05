@@ -351,15 +351,15 @@
         </div>
       </button>
 
-      <button class="tile" data-project="pid-simulink" data-cat="controls">
+      <button class="tile" data-project="dynamics-modeling" data-cat="simulation">
         <div class="tile-photo">
-          <img src="images/project-pid-simulink.jpg" alt="Simulink PID model and step response" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-          <div class="ph">IMAGE PENDING<br>images/project-pid-simulink.jpg</div>
+          <img src="images/project-dynamics-modeling.jpg" alt="Overlaid displacement responses from three modeling approaches" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+          <div class="ph">IMAGE PENDING<br>images/project-dynamics-modeling.jpg</div>
         </div>
         <div class="tile-meta">
-          <p class="tile-cat">CONTROLS · SIMULINK</p>
-          <p class="tile-title">PID Controller Simulation</p>
-          <p class="tile-proof">System error reduced 30% with improved response time and stability.</p>
+          <p class="tile-cat">SIMULATION · MATLAB / SIMULINK / SIMSCAPE</p>
+          <p class="tile-title">Multi-Method Dynamic System Modeling</p>
+          <p class="tile-proof">A 2-DOF mass-spring-damper built three independent ways, with all three responses confirmed to agree.</p>
           <p class="tile-more">Open →</p>
         </div>
       </button>
@@ -576,16 +576,16 @@
       ],
       tags:["Arduino","MATLAB App Designer","PID","Anti-windup"]
     },
-    "pid-simulink":{
-      cat:"CONTROLS &amp; AUTOMATION · SIMULINK",
-      title:"PID Controller Simulation for System Optimization",
-      images:["images/project-pid-simulink.jpg","images/project-pid-simulink-2.jpg","images/project-pid-simulink-3.jpg"],
+    "dynamics-modeling":{
+      cat:"SIMULATION &amp; MODELING · MATLAB / SIMULINK / SIMSCAPE",
+      title:"Multi-Method Dynamic System Modeling",
+      images:["images/project-dynamics-modeling.jpg","images/project-dynamics-modeling-2.jpg","images/project-dynamics-modeling-3.jpg"],
       fields:[
-        ["Goal","Design and tune a PID control system for a dynamic mechanical system."],
-        ["Approach","Modeled the system and iterated on gain parameters in MATLAB, Simulink, and Simscape across multiple simulation runs."],
-        ["Result","Reduced system error by 30% and improved response time while enhancing overall closed-loop stability."]
+        ["Goal","Model a two-degree-of-freedom mass-spring-damper system using three independent approaches and verify that all three produce equivalent results — a check on whether the models were actually built correctly, rather than just producing plausible-looking output."],
+        ["Approach","Built the same system three ways: transfer function blocks in the Laplace (s) domain, a time-domain block diagram in Simulink, and a physical network model in Simscape. Derived the equations of motion for both masses, implemented each representation separately, and drove all three with a common unit step input from a shared MATLAB parameter script."],
+        ["Result","Confirmed agreement across all three methods by overlaying the x₁ and x₂ displacement responses on a single plot. Re-ran the comparison across varied mass and damping coefficients — including the undamped case — and the three approaches continued to match, validating both the derivation and each implementation."]
       ],
-      tags:["MATLAB","Simulink","Simscape","Control Tuning"]
+      tags:["MATLAB","Simulink","Simscape","Laplace Transforms","System Dynamics","Model Verification"]
     },
     "steam-cycle":{
       cat:"PROCESS SIMULATION · SYMMETRY",
@@ -622,7 +622,7 @@
     }
   };
 
-  var ORDER = ["featured","water-level","slab-temp","actuator","pid-arduino","pid-simulink","steam-cycle","refrigeration","gas-tank"];
+  var ORDER = ["featured","water-level","slab-temp","actuator","pid-arduino","dynamics-modeling","steam-cycle","refrigeration","gas-tank"];
 
   var modal = document.getElementById('modal');
   var mMedia = document.getElementById('modal-media');
