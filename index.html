@@ -281,7 +281,6 @@
       <button data-filter="controls" aria-pressed="false">Controls &amp; Automation</button>
       <button data-filter="simulation" aria-pressed="false">Process Simulation</button>
       <button data-filter="rd" aria-pressed="false">R&amp;D</button>
-      <button data-filter="design" aria-pressed="false">Design</button>
     </div>
 
     <div class="grid" id="grid">
@@ -296,19 +295,6 @@
           <p class="tile-cat">FEATURED — PFIZER EXTERNSHIP</p>
           <p class="tile-title">AI Document Insights Pipeline</p>
           <p class="tile-proof">Answer accuracy raised from 33% to 83% across seven document types — fully local, zero cloud cost.</p>
-          <p class="tile-more">Open →</p>
-        </div>
-      </button>
-
-      <button class="tile" data-project="monitoring" data-cat="controls">
-        <div class="tile-photo">
-          <img src="images/project-monitoring.jpg" alt="Multi-variable process monitoring system" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-          <div class="ph">IMAGE PENDING<br>images/project-monitoring.jpg</div>
-        </div>
-        <div class="tile-meta">
-          <p class="tile-cat">CONTROLS · ARDUINO</p>
-          <p class="tile-title">Multi-Variable Process Monitoring</p>
-          <p class="tile-proof">Live temperature, humidity, and level readings across three calibrated sensor channels.</p>
           <p class="tile-more">Open →</p>
         </div>
       </button>
@@ -417,32 +403,6 @@
         </div>
       </button>
 
-      <button class="tile" data-project="shelter-design" data-cat="design">
-        <div class="tile-photo">
-          <img src="images/project-shelter-design.jpg" alt="Homeless shelter floor plan" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-          <div class="ph">IMAGE PENDING<br>images/project-shelter-design.jpg</div>
-        </div>
-        <div class="tile-meta">
-          <p class="tile-cat">DESIGN · TEAM LEAD</p>
-          <p class="tile-title">Homeless Shelter Design</p>
-          <p class="tile-proof">Site-tailored floor plan delivered on time as Design Lead.</p>
-          <p class="tile-more">Open →</p>
-        </div>
-      </button>
-
-      <button class="tile" data-project="vacuum-flask" data-cat="design">
-        <div class="tile-photo">
-          <img src="images/project-vacuum-flask.jpg" alt="SolidWorks vacuum flask assembly" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-          <div class="ph">IMAGE PENDING<br>images/project-vacuum-flask.jpg</div>
-        </div>
-        <div class="tile-meta">
-          <p class="tile-cat">DESIGN · SOLIDWORKS</p>
-          <p class="tile-title">Functional Vacuum Flask</p>
-          <p class="tile-proof">9-component assembly held to 0.5 mm shell and 0.2 mm clearance specs.</p>
-          <p class="tile-more">Open →</p>
-        </div>
-      </button>
-
     </div>
   </div>
 </section>
@@ -515,6 +475,9 @@
       <h2>Other Projects</h2>
     </div>
     <ul class="other">
+      <li><span class="t">Multi-Variable Process Monitoring</span><span class="d">Live temperature, humidity, and distance readings via calibrated LM35, DHT11, and HC-SR04 sensors with I2C display.</span></li>
+      <li><span class="t">Homeless Shelter Design</span><span class="d">Site-tailored floor plan for a high-needs Edmonton location, led as Design Lead.</span></li>
+      <li><span class="t">Functional Vacuum Flask</span><span class="d">9-component SolidWorks assembly held to 0.5 mm shell and 0.2 mm clearance specs.</span></li>
       <li><span class="t">Real Life Security System</span><span class="d">MUX/DEMUX-based digital logic lock-verification system.</span></li>
       <li><span class="t">7-Segment Display Decoders</span><span class="d">Boolean-derived decoder logic synchronizing dual LED displays.</span></li>
       <li><span class="t">Lock Combination Solver</span><span class="d">Python brute-force search across all six-digit combinations.</span></li>
@@ -568,17 +531,6 @@
         ["Result","Improved answer accuracy from 33% to 83% on the evaluation set by diagnosing faults in LLM-based query routing and implementing confidence-gated classification across seven document types. Delivered a working Gradio interface, a technical evaluation report benchmarking retrieval quality, and a production deployment roadmap — at zero cloud or API cost."]
       ],
       tags:["RAG","FAISS","OCR","Open-source LLMs","Gradio","Python"]
-    },
-    "monitoring":{
-      cat:"CONTROLS &amp; AUTOMATION · ARDUINO",
-      title:"Multi-Variable Process Monitoring System",
-      images:["images/project-monitoring.jpg","images/project-monitoring-2.jpg","images/project-monitoring-3.jpg"],
-      fields:[
-        ["Goal","Build a data acquisition platform converting raw sensor signals into live, monitorable process readings."],
-        ["Approach","Calibrated LM35 and DHT11 sensors and programmed an HC-SR04 ultrasonic sensor on an Arduino Uno, with I2C display integration for live readout."],
-        ["Result","Delivered accurate, non-contact temperature, humidity, and level monitoring across three sensor channels — a working foundation for automated process monitoring."]
-      ],
-      tags:["Arduino","Data Acquisition","Instrumentation","I2C"]
     },
     "water-level":{
       cat:"CONTROLS &amp; AUTOMATION · UofA ISA DESIGN CHALLENGE",
@@ -667,32 +619,10 @@
         ["Result","Close alignment between predicted and measured temperature profiles, with model sensitivity assessed via Holman-method uncertainty analysis."]
       ],
       tags:["Thermodynamics","Data Acquisition","Uncertainty Analysis"]
-    },
-    "shelter-design":{
-      cat:"DESIGN · TEAM LEAD",
-      title:"Homeless Shelter Design",
-      images:["images/project-shelter-design.jpg","images/project-shelter-design-2.jpg","images/project-shelter-design-3.jpg"],
-      fields:[
-        ["Goal","Deliver a complete, site-tailored floor plan for a homeless shelter serving a high-needs area of Edmonton, AB."],
-        ["Approach","Led the design process as team Design Lead, coordinating implementation and prototyping phases with a multidisciplinary team."],
-        ["Result","Achieved full compliance with location-specific design requirements and on-time delivery of all prototyping milestones."]
-      ],
-      tags:["Design Lead","Floor Planning","Cross-functional Team"]
-    },
-    "vacuum-flask":{
-      cat:"DESIGN · SOLIDWORKS",
-      title:"Functional Vacuum Flask",
-      images:["images/project-vacuum-flask.jpg","images/project-vacuum-flask-2.jpg","images/project-vacuum-flask-3.jpg"],
-      fields:[
-        ["Goal","Parametrically model a multi-component vacuum flask assembly within a strict tolerance budget."],
-        ["Approach","Designed all 9 components in SolidWorks, applying transitional fits and precision assembly techniques."],
-        ["Result","Held 100% adherence to spec within a 4-week timeline — 0.5 mm shell thickness, 0.2 mm assembly clearance, and a consistent 56.00 mm inner-shell radius."]
-      ],
-      tags:["SolidWorks","Parametric Design","Tolerancing"]
     }
   };
 
-  var ORDER = ["featured","monitoring","water-level","slab-temp","actuator","pid-arduino","pid-simulink","steam-cycle","refrigeration","gas-tank","shelter-design","vacuum-flask"];
+  var ORDER = ["featured","water-level","slab-temp","actuator","pid-arduino","pid-simulink","steam-cycle","refrigeration","gas-tank"];
 
   var modal = document.getElementById('modal');
   var mMedia = document.getElementById('modal-media');
