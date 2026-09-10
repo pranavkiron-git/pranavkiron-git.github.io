@@ -285,6 +285,7 @@
       <button data-filter="all" aria-pressed="true">All</button>
       <button data-filter="controls" aria-pressed="false">Controls &amp; Automation</button>
       <button data-filter="simulation" aria-pressed="false">Process Simulation</button>
+      <button data-filter="ops" aria-pressed="false">Manufacturing &amp; Operations</button>
     </div>
 
     <div class="grid" id="grid">
@@ -390,6 +391,19 @@
           <p class="tile-cat">SIMULATION · SYMMETRY</p>
           <p class="tile-title">Propane Refrigeration Loop</p>
           <p class="tile-proof">Converged flowsheet with realistic vapour–liquid equilibrium across sensitivity cases.</p>
+          <p class="tile-more">Open →</p>
+        </div>
+      </button>
+
+      <button class="tile" data-project="siemens-ie" data-cat="ops">
+        <div class="tile-photo">
+          <img src="images/project-siemens-ie.jpg" alt="Bar chart of assembly line time study highlighting two bottleneck steps" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+          <div class="ph">IMAGE PENDING<br>images/project-siemens-ie.jpg</div>
+        </div>
+        <div class="tile-meta">
+          <p class="tile-cat">MANUFACTURING &amp; OPS · FORAGE JOB SIMULATION</p>
+          <p class="tile-title">Operations Industrial Engineer Job Simulation — Siemens Mobility</p>
+          <p class="tile-proof">Identified two sequential bottlenecks in a 62-minute assembly line and proposed a capital-free layout fix.</p>
           <p class="tile-more">Open →</p>
         </div>
       </button>
@@ -565,10 +579,22 @@
         ["Result","Achieved full flowsheet convergence across sensitivity cases, analyzing pressure, temperature, pressure drop, and heat load impacts."]
       ],
       tags:["Aspen Symmetry","VLE","Refrigeration Cycle"]
+    },
+    "siemens-ie":{
+      cat:"MANUFACTURING &amp; OPERATIONS · FORAGE JOB SIMULATION",
+      title:"Operations Industrial Engineer Job Simulation — Siemens Mobility",
+      images:["images/project-siemens-ie.jpg","images/project-siemens-ie-2.jpg","images/project-siemens-ie-3.jpg"],
+      fields:[
+        ["Context","Completed as a Forage virtual job simulation — a self-paced training exercise built around a fictional scenario, not employment or an internship at Siemens Mobility. The brief: a fictional high-speed rail program (\"Project Velocity\") whose wheel assembly line has a throughput problem."],
+        ["Task 1 — Bottleneck Analysis","Analyzed 200 time-study observations (20 process steps × 10 cycles) using mean, median, and range. Found two sequential constraints pacing the 62.07-minute cycle: Mounting the wheel to the axle (5.41 min, 74% above the process mean) and conducting wheel alignment (4.75 min, 53% above the mean) — together 16.4% of total cycle time. Proposed a dedicated wheel-lift positioning machine to replace the shared overhead crane, pre-aligning rigging during the prior step to move setup off the critical path, and re-balancing the line once the first bottleneck improves — since the second-largest step would then become the new binding constraint."],
+        ["Task 2 — Layout Redesign","After the automation fix from Task 1 was rejected on cost and lead-time grounds, redesigned the physical layout instead: converted a 2×2 block arrangement to a single-direction linear flow, added a dedicated Wheel Mount & Alignment Bay with a point-of-use lift fixture, rescoped the existing overhead crane to press hand-off only, resequenced the four workstations by function, and relocated the warehouse to the end of the line to shorten the final transport step. Presented the proposal with three challenge/mitigation pairs covering capital cost, changeover downtime, and operator retraining."],
+        ["What I'd do next","The proposal was never quantified — no projected post-change cycle time or ROI estimate exists. The natural next step is estimating recovered time at the wheel-mount station and re-running the time study after implementation to confirm the predicted bottleneck shift actually occurs."]
+      ],
+      tags:["Time Study","Bottleneck Analysis","Theory of Constraints","Manufacturing Layout","SMED","Root Cause Analysis","Excel"]
     }
   };
 
-  var ORDER = ["featured","water-level","slab-temp","actuator","pid-arduino","dynamics-modeling","steam-cycle","refrigeration"];
+  var ORDER = ["featured","water-level","slab-temp","actuator","pid-arduino","dynamics-modeling","steam-cycle","refrigeration","siemens-ie"];
 
   var modal = document.getElementById('modal');
   var mMedia = document.getElementById('modal-media');
